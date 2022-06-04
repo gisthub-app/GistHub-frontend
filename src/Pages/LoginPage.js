@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useContext } from "react"
 import Avatar from "@mui/material/Avatar"
 import Button from "@mui/material/Button"
 import CssBaseline from "@mui/material/CssBaseline"
@@ -13,8 +13,12 @@ import Typography from "@mui/material/Typography"
 import Container from "@mui/material/Container"
 import CopyrightComponent from "../Components/CopyrightComponent"
 import axios from "axios"
+import { UserContext } from "../Context/UserContext"
+import { useNavigate } from "react-router-dom"
 
 const LoginPage = () => {
+  const [userContext, setUserContext] = useContext(UserContext)
+  const navigate = useNavigate()
   const handleSubmit = async (e) => {
     e.preventDefault()
     const formData = new FormData(e.currentTarget)
@@ -27,6 +31,8 @@ const LoginPage = () => {
         }
       )
       console.log(data)
+      setUserContext({ user: data })
+      navigate("/dashboard")
     } catch (err) {
       console.log(err)
     }

@@ -10,9 +10,17 @@ import axios from "axios"
 import { useNavigate } from "react-router-dom"
 import Cookies from "js-cookie"
 import whiteLogo from "../img/white-logo.png"
+import { UserContext } from "../Context/UserContext"
 
 const Navbar = ({ isLoggedIn, drawerWidth }) => {
+  const [userState, setUserState] = useContext(UserContext)
   const navigate = useNavigate()
+
+  const handleLogout = () => {
+    setUserState({})
+    Cookies.remove("auth_gisthub")
+    navigate("/")
+  }
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
@@ -36,14 +44,29 @@ const Navbar = ({ isLoggedIn, drawerWidth }) => {
               </Typography>
             </Button>
           </div>
-          <>
-            <Button href='/login' sx={{ color: "white" }} variant='text'>
-              Login
-            </Button>
-            <Button href='/signup' sx={{ color: "white" }} variant='text'>
-              Sign up
-            </Button>
-          </>
+          {userState.user ? (
+            <>
+              <Button href='/login' sx={{ color: "white" }} variant='text'>
+                <AddCircleIcon />
+              </Button>
+              <Button
+                onClick={handleLogout}
+                sx={{ color: "white" }}
+                variant='text'
+              >
+                Logout
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button href='/login' sx={{ color: "white" }} variant='text'>
+                Login
+              </Button>
+              <Button href='/signup' sx={{ color: "white" }} variant='text'>
+                Sign up
+              </Button>
+            </>
+          )}
         </Toolbar>
       </AppBar>
     </Box>

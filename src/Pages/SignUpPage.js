@@ -13,26 +13,37 @@ import Typography from "@mui/material/Typography"
 import Container from "@mui/material/Container"
 import axios from "axios"
 import CopyrightComponent from "../Components/CopyrightComponent"
-
-const handleSubmit = async (e) => {
-  e.preventDefault()
-  const formData = new FormData(e.currentTarget)
-  try {
-    const { data } = await axios.post(
-      process.env.REACT_APP_SERVER_URL + "/register",
-      {
-        username: formData.get("username"),
-        password: formData.get("password"),
-        email: formData.get("email"),
-        firstName: formData.get("firstName"),
-        lastName: formData.get("lastName"),
-      }
-    )
-  } catch (err) {
-    console.log(err)
-  }
-}
+import { UserContext } from "../Context/UserContext"
+import { useNavigate } from "react-router-dom"
 const SignUpPage = () => {
+  const [userContext, setUserContext] = useContext(UserContext)
+  const [state, setState] = useState({ user: undefined })
+  const navigate = useNavigate()
+  useEffect(() => {
+    console.log(state)
+  }, [state])
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const formData = new FormData(e.currentTarget)
+    try {
+      const { data } = await axios.post(
+        process.env.REACT_APP_SERVER_URL + "/register",
+        {
+          username: formData.get("username"),
+          password: formData.get("password"),
+          email: formData.get("email"),
+          firstName: formData.get("firstName"),
+          lastName: formData.get("lastName"),
+        }
+      )
+      setUserContext({ user: data })
+      navigate("/dashboard")
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   return (
     <Container component='main' maxWidth='xs'>
       <CssBaseline />

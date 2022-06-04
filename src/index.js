@@ -5,16 +5,18 @@ import App from "./App"
 import { CssBaseline } from "@mui/material"
 import { createTheme, ThemeProvider } from "@mui/material/styles"
 import { BrowserRouter } from "react-router-dom"
+import { UserProvider } from "./Context/UserContext"
 
 const theme = createTheme()
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <CssBaseline>
+    <UserProvider>
+      <CssBaseline />
+      <ThemeProvider theme={theme}>
         <App />
-      </CssBaseline>
-    </ThemeProvider>
+      </ThemeProvider>
+    </UserProvider>
   </React.StrictMode>,
   document.getElementById("root")
 )
