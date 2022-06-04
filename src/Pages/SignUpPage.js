@@ -12,24 +12,8 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined"
 import Typography from "@mui/material/Typography"
 import Container from "@mui/material/Container"
 import axios from "axios"
+import CopyrightComponent from "../Components/CopyrightComponent"
 
-function Copyright(props) {
-  return (
-    <Typography
-      variant='body2'
-      color='text.secondary'
-      align='center'
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color='inherit' href='https://material-ui.com/'>
-        Gisthub
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  )
-}
 const handleSubmit = async (e) => {
   e.preventDefault()
   const formData = new FormData(e.currentTarget)
@@ -144,6 +128,7 @@ const SignUpPage = () => {
           </Grid>
         </Box>
       </Box>
+      <CopyrightComponent sx={{ mt: 5 }} />
     </Container>
   )
 }
