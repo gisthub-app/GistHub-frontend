@@ -1,19 +1,22 @@
 import React from "react"
 import ReactDOM from "react-dom"
-
+import "./index.css"
 import App from "./App"
+import { CssBaseline } from "@mui/material"
 import { createTheme, ThemeProvider } from "@mui/material/styles"
-import CssBaseline from "@mui/material/CssBaseline"
-// todo: add context UserProvider on this level
+import { BrowserRouter } from "react-router-dom"
+
 const theme = createTheme()
-const root = ReactDOM.createRoot(document.getElementById("root"))
-root.render(
+
+ReactDOM.render(
   <React.StrictMode>
-    <CssBaseline />
     <ThemeProvider theme={theme}>
-      <App />
+      <CssBaseline>
+        <App />
+      </CssBaseline>
     </ThemeProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
+  document.getElementById("root")
 )
 
 // If you want to start measuring performance in your app, pass a function
