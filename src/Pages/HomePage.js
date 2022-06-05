@@ -10,6 +10,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles"
 import blueLogo from "../img/blue-logo.png"
 
 import code from "../img/code.jpg"
+import { UserContext } from "../Context/UserContext"
 function Copyright(props) {
   return (
     <Typography
@@ -29,6 +30,7 @@ function Copyright(props) {
 }
 
 export default function HomePage() {
+  const [userState, setUserState] = useContext(UserContext)
   return (
     <Grid container component='main' sx={{ height: "100vh" }}>
       <CssBaseline />
@@ -70,24 +72,44 @@ export default function HomePage() {
           <Typography component='h1' variant='h5'>
             Welcome to Gisthub!
           </Typography>
-          <Box>
-            <Button
-              href='/login'
-              fullWidth
-              variant='contained'
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Login
-            </Button>
 
-            <Button
-              href='/signup'
-              fullWidth
-              variant='outlined'
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Sign Up
-            </Button>
+          <Box>
+            {userState.user ? (
+              <>
+                <Typography variant='h6'>
+                  {userState.user.firstName + " " + userState.user.lastName}
+                </Typography>
+                <Button
+                  href='/dashboard'
+                  fullWidth
+                  variant='contained'
+                  sx={{ mt: 3, mb: 2 }}
+                >
+                  See my gists
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button
+                  href='/login'
+                  fullWidth
+                  variant='contained'
+                  sx={{ mt: 3, mb: 2 }}
+                >
+                  Login
+                </Button>
+
+                <Button
+                  href='/signup'
+                  fullWidth
+                  variant='outlined'
+                  sx={{ mt: 3, mb: 2 }}
+                >
+                  Sign Up
+                </Button>
+              </>
+            )}
+
             <Copyright sx={{ mt: 5 }} />
           </Box>
         </Box>
