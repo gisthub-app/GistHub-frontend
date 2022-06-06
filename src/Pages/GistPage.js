@@ -7,6 +7,9 @@ import axios from "axios"
 import EditIcon from "@mui/icons-material/Edit"
 import PrivateShareModal from "../Components/PrivateShareModal"
 import PublicShareModal from "../Components/PublicShareModal"
+import ViewCodeComponent from "../Components/ViewCodeComponent"
+import ViewTextComponent from "../Components/ViewTextComponent"
+import ViewTitleComponent from "../Components/ViewTitleComponent"
 
 const GistPage = () => {
   const [open, setOpen] = useState(false)
@@ -31,6 +34,7 @@ const GistPage = () => {
 
   const getCurrentGist = async () => {
     try {
+      console.log(id)
       const { data } = await axios.post(
         process.env.REACT_APP_SERVER_URL + "/viewGist",
         {
@@ -60,9 +64,7 @@ const GistPage = () => {
   return (
     <div style={{ margin: 50 }}>
       <div style={{ display: "flex", alignItems: "center" }}>
-        <Typography variant='h4' sx={{ flex: 1 }}>
-          {title}
-        </Typography>
+        <ViewTitleComponent payload={title}></ViewTitleComponent>
         {isOwner && (
           <>
             <Button
@@ -104,14 +106,15 @@ const GistPage = () => {
           </>
         )}
       </div>
-      {/* {items.map((item, index) => {
+      {items.map((item, index) => {
         const { type, payload } = item
+        console.log(payload)
         if (type === "Code") {
-          return <ViewCode payload={payload} />
+          return <ViewCodeComponent payload={payload} />
         } else {
-          return <ViewText payload={payload} />
+          return <ViewTextComponent payload={payload} />
         }
-      })} */}
+      })}
     </div>
   )
 }

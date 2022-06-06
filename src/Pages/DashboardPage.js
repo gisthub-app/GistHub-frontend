@@ -62,7 +62,7 @@ const DashboardPage = () => {
   const [gistsData, setGistsData] = useState([])
   const [sharedGistsData, setSharedGistsData] = useState([])
 
-  const [sharedWithMe, setSharedWithMe] = useState(false)
+  const [sharedWithMeTab, setSharedWithMeTab] = useState(false)
 
   const userFullName = `${userState.user.firstName} ${userState.user.lastName}`
   const getMyGists = async () => {
@@ -85,7 +85,7 @@ const DashboardPage = () => {
   }, [])
 
   const handleChange = (event, newValue) => {
-    setSharedWithMe(Boolean(newValue))
+    setSharedWithMeTab(Boolean(newValue))
   }
 
   return (
@@ -129,11 +129,11 @@ const DashboardPage = () => {
           borderRadius: 0,
         }}
       >
-        <Tabs value={Number(sharedWithMe)} onChange={handleChange}>
+        <Tabs value={Number(sharedWithMeTab)} onChange={handleChange}>
           <Tab label='My Gists' value={0} />
           <Tab label='Shared with me' value={1} />
         </Tabs>
-        {!sharedWithMe &&
+        {!sharedWithMeTab &&
           gistsData.map((gist) => (
             <Card variant='outlined' style={{ margin: "10px" }}>
               <Typography
@@ -144,7 +144,7 @@ const DashboardPage = () => {
               </Typography>
 
               <CardActionArea
-                href={`/gist/${gist._id}`}
+                href={`/gist/${gist.id}`}
                 style={{ padding: "10px" }}
               >
                 {" "}
@@ -155,7 +155,7 @@ const DashboardPage = () => {
             </Card>
           ))}
 
-        {sharedWithMe &&
+        {sharedWithMeTab &&
           sharedGistsData.map((gist) => (
             <Card variation='outlined' style={{ margin: "10px" }}>
               <Typography
@@ -165,7 +165,7 @@ const DashboardPage = () => {
                 {gist.title}
               </Typography>
               <CardActionArea
-                href={`/gist/${gist.id}`}
+                href={`/gist/${gist._id}`}
                 style={{ padding: "10px" }}
               >
                 <CardActions>
