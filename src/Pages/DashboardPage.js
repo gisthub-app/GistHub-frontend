@@ -144,7 +144,7 @@ const DashboardPage = () => {
               </Typography>
 
               <CardActionArea
-                href={`/viewGist/${gist._id}`}
+                href={`/gist/${gist._id}`}
                 style={{ padding: "10px" }}
               >
                 {" "}

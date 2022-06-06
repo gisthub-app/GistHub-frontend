@@ -10,6 +10,8 @@ import HomePage from "./Pages/HomePage"
 import DashboardPage from "./Pages/DashboardPage"
 import TestComponent from "./Components/TestComponent"
 import { UserContext } from "./Context/UserContext"
+import GistPage from "./Pages/GistPage"
+import EditGistPage from "./Pages/EditGistPage"
 function App() {
   const [userState, setUserState] = useContext(UserContext)
   return (
@@ -46,6 +48,20 @@ function App() {
             path='/dashboard'
             element={
               userState.user ? <DashboardPage /> : <Navigate to='/'></Navigate>
+            }
+          />
+          <Route
+            exact
+            path='/gist/:id'
+            element={
+              userState.user ? <GistPage /> : <Navigate to='/'></Navigate>
+            }
+          />
+          <Route
+            exact
+            path='/editGist/:id'
+            element={
+              userState.user ? <EditGistPage /> : <Navigate to='/'></Navigate>
             }
           />
           <Route exact path='/test' element={<TestComponent />} />
