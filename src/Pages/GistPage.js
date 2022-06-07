@@ -10,6 +10,7 @@ import PublicShareModal from "../Components/PublicShareModal"
 import ViewCodeComponent from "../Components/ViewCodeComponent"
 import ViewTextComponent from "../Components/ViewTextComponent"
 import ViewTitleComponent from "../Components/ViewTitleComponent"
+import { ErrorPage } from "./ErrorPage"
 
 const GistPage = () => {
   const [open, setOpen] = useState(false)
@@ -31,10 +32,10 @@ const GistPage = () => {
   const [isPrivate, setIsPrivate] = useState(true)
 
   const [permissions, setPermissions] = useState([])
-
+  const [ownerUsername, setOwnerUsername] = useState("")
   const getCurrentGist = async () => {
     try {
-      console.log(id)
+      // console.log(id)
       const { data } = await axios.post(
         process.env.REACT_APP_SERVER_URL + "/viewGist",
         {
@@ -46,12 +47,22 @@ const GistPage = () => {
       setTitle(gist.title || "")
       setItems(gist.content || [])
       setIsOwner(userState.user.id === gist.owner.toString())
+      if (!(userState.user.id === gist.owner.toString())) {
+        const { data } = await axios.post(
+          process.env.REACT_APP_SERVER_URL + "/getUser",
+          {
+            _id: gist.owner,
+          }
+        )
+        setOwnerUsername(data.user.username)
+      }
       console.log(gist)
 
       setIsPrivate(gist.isPrivate)
       setPermissions(gist.permissions || [])
     } catch (err) {
       console.log(err)
+      setError(err.response.status)
     }
   }
   useEffect(() => {
@@ -61,11 +72,13 @@ const GistPage = () => {
   }, [id])
 
   const handleClose = () => setOpen(false)
-  return (
+  return error ? (
+    <ErrorPage status={error} />
+  ) : (
     <div style={{ margin: 50 }}>
       <div style={{ display: "flex", alignItems: "center" }}>
         <ViewTitleComponent payload={title}></ViewTitleComponent>
-        {isOwner && (
+        {isOwner ? (
           <>
             <Button
               variant='contained'
@@ -104,6 +117,10 @@ const GistPage = () => {
               )}
             </Modal>
           </>
+        ) : (
+          <Typography>
+            This Gist was shared with you by {ownerUsername}
+          </Typography>
         )}
       </div>
       {items.map((item, index) => {

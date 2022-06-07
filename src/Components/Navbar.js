@@ -63,7 +63,11 @@ const Navbar = ({ isLoggedIn, drawerWidth }) => {
           </div>
           {userState.user ? (
             <div>
-              <Button style={{ backgroundColor: "white" }} variant='text'>
+              <Button
+                onClick={() => navigate("/dashboard")}
+                style={{ backgroundColor: "white" }}
+                variant='text'
+              >
                 Gists Dashboard
               </Button>
 
