@@ -12,13 +12,14 @@ import TestComponent from "./Components/TestComponent"
 import { UserContext } from "./Context/UserContext"
 import GistPage from "./Pages/GistPage"
 import EditGistPage from "./Pages/EditGistPage"
+import { ToastContainer } from "react-toastify"
+
 function App() {
   const [userState, setUserState] = useContext(UserContext)
   return (
     <>
       <Router>
-        {" "}
-        <Navbar />
+        <ToastContainer /> <Navbar />
         <Routes>
           <Route exact path='/' element={<HomePage />} />
           <Route

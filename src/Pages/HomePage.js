@@ -21,7 +21,7 @@ function Copyright(props) {
     >
       {"Copyright © "}
       <Link color='inherit' href='https://material-ui.com/'>
-        Gisthub
+        GistHub
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}

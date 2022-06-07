@@ -10,8 +10,8 @@ const NotAllowedComponent = () => {
         You do not have permission to view this gist.
       </Typography>
       <Typography style={{ marginTop: "30px" }} variant='h6'>
-        Please contact the owner to give you permission by allowing access to
-        your username <b>{userState.user.username}</b>
+        Please contact the owner to give you permission by <b>sharing</b> the
+        gist with your username: <b>{userState.user.username}</b>
       </Typography>
     </div>
   )

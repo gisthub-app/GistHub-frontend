@@ -15,13 +15,13 @@ import axios from "axios"
 import CopyrightComponent from "../Components/CopyrightComponent"
 import { UserContext } from "../Context/UserContext"
 import { useNavigate } from "react-router-dom"
+import { toast } from "react-toastify"
+
 const SignUpPage = () => {
   const [userContext, setUserContext] = useContext(UserContext)
   const [state, setState] = useState({ user: undefined })
   const navigate = useNavigate()
-  useEffect(() => {
-    console.log(state)
-  }, [state])
+  useEffect(() => {}, [state])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -38,6 +38,9 @@ const SignUpPage = () => {
         }
       )
       setUserContext({ user: data })
+      toast.success(
+        `Sign up successful. Welcome to GistHub ${formData.get("firstName")}`
+      )
       navigate("/dashboard")
     } catch (err) {
       console.log(err)

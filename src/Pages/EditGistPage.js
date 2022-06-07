@@ -15,6 +15,7 @@ import PrivateShareModal from "../Components/PrivateShareModal"
 import EditCodeComponent from "../Components/EditCodeComponent"
 
 import EditTextComponent from "../Components/EditTextComponent"
+import { toast } from "react-toastify"
 
 const EditGistPage = () => {
   const [openShareTab, setOpenShareTab] = useState(false)
@@ -81,7 +82,7 @@ const EditGistPage = () => {
           title: title,
         }
       )
-
+      toast.success("Gist saved succesfully")
       console.log(data)
     } catch (err) {
       console.log(err)

@@ -15,6 +15,7 @@ import CopyrightComponent from "../Components/CopyrightComponent"
 import axios from "axios"
 import { UserContext } from "../Context/UserContext"
 import { useNavigate } from "react-router-dom"
+import { toast } from "react-toastify"
 
 const LoginPage = () => {
   const [userContext, setUserContext] = useContext(UserContext)
@@ -30,10 +31,13 @@ const LoginPage = () => {
           password: formData.get("password"),
         }
       )
-      console.log(data)
+      // console.log(data)
+      toast.success(`Welcome back ${data.firstName}`)
+
       setUserContext({ user: data })
       navigate("/dashboard")
     } catch (err) {
+      toast.error("Invalid username/email or password")
       console.log(err)
     }
   }
@@ -61,7 +65,7 @@ const LoginPage = () => {
             required
             fullWidth
             id='username'
-            label='Username'
+            label='Username or email address'
             name='username'
             autoComplete='username'
             autoFocus
@@ -83,7 +87,7 @@ const LoginPage = () => {
             variant='contained'
             sx={{ mt: 3, mb: 2 }}
           >
-            Sign In
+            Login
           </Button>
           <Grid container>
             <Grid item>

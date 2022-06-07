@@ -15,7 +15,7 @@ import { ErrorPage } from "./ErrorPage"
 const GistPage = () => {
   const [open, setOpen] = useState(false)
   const [items, setItems] = useState([
-    { type: "Code", payload: "let" },
+    { type: "Code", payload: "" },
     { type: "Text", payload: "" },
   ])
 
@@ -118,9 +118,7 @@ const GistPage = () => {
             </Modal>
           </>
         ) : (
-          <Typography>
-            This Gist was shared with you by {ownerUsername}
-          </Typography>
+          <Typography>This Gist is owned by {ownerUsername}</Typography>
         )}
       </div>
       {items.map((item, index) => {

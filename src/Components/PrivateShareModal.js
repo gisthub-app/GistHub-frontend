@@ -8,6 +8,7 @@ import DeleteIcon from "@mui/icons-material/Delete"
 import axios from "axios"
 import { UserContext } from "../Context/UserContext"
 import { useParams } from "react-router-dom"
+import { toast } from "react-toastify"
 
 const modalStyle = {
   position: "absolute",
@@ -51,6 +52,7 @@ const PrivateShareModal = ({
         }
       )
       setInvited([...invited, username])
+      toast.info(`Added ${username} to the list of permitted users`)
     } catch (err) {
       console.log(err)
     }
@@ -68,6 +70,7 @@ const PrivateShareModal = ({
         }
       )
       setInvited(userRemovedInvitations)
+      toast.info(`Removed ${username} from the list of permitted users`)
     } catch (err) {
       console.log(err)
     }
@@ -83,6 +86,8 @@ const PrivateShareModal = ({
           isPrivate: false,
         }
       )
+      setIsPrivate(false)
+      toast.info("Your gist is now public. Anyone with the link can view it.")
     } catch (err) {
       console.log(err)
     }

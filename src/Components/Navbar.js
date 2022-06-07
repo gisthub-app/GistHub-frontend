@@ -12,6 +12,7 @@ import Cookies from "js-cookie"
 import whiteLogo from "../img/white-logo.png"
 import { UserContext } from "../Context/UserContext"
 import { makeStyles } from "@mui/material"
+import { toast } from "react-toastify"
 
 const Navbar = ({ isLoggedIn, drawerWidth }) => {
   const [userState, setUserState] = useContext(UserContext)
@@ -21,6 +22,7 @@ const Navbar = ({ isLoggedIn, drawerWidth }) => {
     setUserState({})
     Cookies.remove("auth_gisthub")
     navigate("/")
+    toast.success("Logout successful")
   }
 
   const handleAddGist = async () => {
@@ -31,7 +33,7 @@ const Navbar = ({ isLoggedIn, drawerWidth }) => {
           user: userState.user,
         }
       )
-
+      toast.success("Fill in the gist and save it")
       navigate(`/editGist/${data._id}`)
     } catch (err) {
       console.log(err)
@@ -57,7 +59,7 @@ const Navbar = ({ isLoggedIn, drawerWidth }) => {
                 component='div'
                 sx={{ color: "white", flexGrow: 1, textTransform: "none" }}
               >
-                Gisthub
+                GistHub
               </Typography>
             </Button>
           </div>
