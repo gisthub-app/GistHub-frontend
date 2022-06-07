@@ -47,7 +47,7 @@ const GistPage = () => {
       setItems(gist.content || [])
       setIsOwner(userState.user.id === gist.owner.toString())
       console.log(gist)
-      //TODO change below
+
       setIsPrivate(gist.isPrivate)
       setPermissions(gist.permissions || [])
     } catch (err) {

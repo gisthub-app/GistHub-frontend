@@ -12,6 +12,7 @@ import {
 import axios from "axios"
 import React, { useContext, useState, useEffect } from "react"
 import { UserContext } from "../Context/UserContext"
+import DeleteIcon from "@mui/icons-material/Delete"
 
 // originally from https://stackoverflow.com/questions/3426404/create-a-hexadecimal-colour-based-on-a-string-with-javascript
 function stringToColor(string) {
@@ -88,6 +89,19 @@ const DashboardPage = () => {
     setSharedWithMeTab(Boolean(newValue))
   }
 
+  const handleDeleteGist = async (gistId) => {
+    try {
+      await axios.post(process.env.REACT_APP_SERVER_URL + "/deleteGist", {
+        _id: gistId,
+        user: userState.user,
+      })
+      const updatedGists = gistsData.filter((gist) => gist._id !== gistId)
+      setGistsData(updatedGists)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <div style={{ display: "flex", height: "100vh" }}>
       <div
@@ -143,15 +157,15 @@ const DashboardPage = () => {
                 {gist.title}
               </Typography>
 
-              <CardActionArea
-                href={`/gist/${gist._id}`}
-                style={{ padding: "10px" }}
-              >
+              <div style={{ padding: "10px" }}>
                 {" "}
-                <CardActions>
-                  <Button size='small'>View This Gist</Button>
-                </CardActions>
-              </CardActionArea>
+                <Button href={`/gist/${gist._id}`} size='large'>
+                  View This Gist
+                </Button>
+                <Button onClick={() => handleDeleteGist(gist._id)} size='large'>
+                  <DeleteIcon />
+                </Button>
+              </div>
             </Card>
           ))}
 

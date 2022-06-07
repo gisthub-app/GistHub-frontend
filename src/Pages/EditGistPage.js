@@ -12,7 +12,7 @@ import { useParams } from "react-router-dom"
 import { EditTitleComponent } from "../Components/EditTitleComponent"
 import PublicShareModal from "../Components/PublicShareModal"
 import PrivateShareModal from "../Components/PrivateShareModal"
-// import EditCodeComponent from "../Components/EditCodeComponent"
+import EditCodeComponent from "../Components/EditCodeComponent"
 
 import EditTextComponent from "../Components/EditTextComponent"
 
@@ -25,20 +25,22 @@ const EditGistPage = () => {
 
   const [userState, setUserState] = useContext(UserContext)
   const { id } = useParams()
+  const gistId = id
   const [error, setError] = useState(null)
 
   const getCurrentGist = async () => {
     try {
-      const { data } = axios.post(
+      const { data } = await axios.post(
         process.env.REACT_APP_SERVER_URL + "/viewGist",
         {
           user: userState.user,
-          gistId: id,
+          gistId: gistId,
         }
       )
-      const { gist } = data.gist
+
+      const gist = data.gist
       setTitle(gist.title || "")
-      setContent(gist.items || [])
+      setContent(gist.content || [])
       setPermissions(gist.permissions || [])
       setIsPrivate(gist.isPrivate)
     } catch (err) {
@@ -50,19 +52,59 @@ const EditGistPage = () => {
       getCurrentGist()
     }
   }, [id])
+
   const handleCloseShareTab = () => setOpenShareTab(false)
-  const handleChange = (payload, idx) => {
+
+  const handleTextCodeChange = (payload, idx) => {
     const newContent = [...content]
-    newContent[idx] = payload
+    // console.log(newContent[idx])
+    newContent[idx].payload = payload
     setContent(newContent)
+  }
+  const handleTitleChange = (newTitle) => {
+    setTitle(newTitle)
+  }
+
+  const handleTextCodeDelete = (idx) => {
+    const newContent = [...content]
+    newContent.splice(idx, 1)
+    setContent(newContent)
+  }
+  const handleSave = async () => {
+    try {
+      const { data } = await axios.post(
+        process.env.REACT_APP_SERVER_URL + "/updateGist",
+        {
+          user: userState.user,
+          gistId: gistId,
+          content: content,
+          title: title,
+        }
+      )
+
+      console.log(data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  const DEFAULT_CODE = { type: "Code", payload: "" }
+  const DEFAULT_TEXT = { type: "Text", payload: "" }
+
+  const createNewCode = () => {
+    setContent([...content, DEFAULT_CODE])
+  }
+  const createNewText = () => {
+    setContent([...content, DEFAULT_TEXT])
   }
   return (
     <div style={{ margin: 50 }}>
       <div style={{ display: "flex", alignItems: "center" }}>
-        {/* <EditTitleComponent
+        <EditTitleComponent
           title={title}
           setTitle={setTitle}
-        ></EditTitleComponent> */}
+          handleTitleChange={(newTitle) => handleTitleChange(newTitle)}
+        ></EditTitleComponent>
         <Button
           variant='contained'
           startIcon={<ShareIcon />}
@@ -70,47 +112,68 @@ const EditGistPage = () => {
         >
           Share
         </Button>
-        <Button variant='contained' startIcon={<SaveIcon />}>
+        <Button
+          variant='contained'
+          startIcon={<SaveIcon />}
+          onClick={handleSave}
+          style={{ marginLeft: 10 }}
+        >
           Save
         </Button>
-
-        <Modal
-          open={openShareTab}
-          onClose={handleCloseShareTab}
-          aria-labelledby='modal-modal-title'
-          aria-describedby='modal-modal-description'
-        >
-          {isPrivate ? (
-            <PrivateShareModal
-              invited={permissions}
-              setInvited={setPermissions}
-              isPrivate={isPrivate}
-              setIsPrivate={setIsPrivate}
-            />
-          ) : (
-            <PublicShareModal
-              isPrivate={isPrivate}
-              setIsPrivate={setIsPrivate}
-            />
-          )}
-        </Modal>
-        {content.map((item, index) => {
-          const { type, payload } = item
-          if (type === "Code") {
-            return null
-            // <EditCodeComponent
-            //   payload={payload}
-            //   onCodeChange={(payload) => handleChange(payload, index)}
-            // ></EditCodeComponent>
-          } else {
-            return null
-            // <EditTextComponent
-            //   payload={payload}
-            //   onTextChange={(payload) => handleChange(payload, index)}
-            // ></EditTextComponent>
-          }
-        })}
       </div>
+
+      <Modal
+        open={openShareTab}
+        onClose={handleCloseShareTab}
+        aria-labelledby='modal-modal-title'
+        aria-describedby='modal-modal-description'
+      >
+        {isPrivate ? (
+          <PrivateShareModal
+            invited={permissions}
+            setInvited={setPermissions}
+            isPrivate={isPrivate}
+            setIsPrivate={setIsPrivate}
+          />
+        ) : (
+          <PublicShareModal isPrivate={isPrivate} setIsPrivate={setIsPrivate} />
+        )}
+      </Modal>
+
+      {content.map((item, index) => {
+        const { type, payload } = item
+        if (type === "Code") {
+          return (
+            <EditCodeComponent
+              handleDelete={() => handleTextCodeDelete(index)}
+              payload={payload}
+              onCodeChange={(payload) => handleTextCodeChange(payload, index)}
+            ></EditCodeComponent>
+          )
+        } else {
+          return (
+            <EditTextComponent
+              handleDelete={() => handleTextCodeDelete(index)}
+              payload={payload}
+              onTextChange={(payload) => handleTextCodeChange(payload, index)}
+            ></EditTextComponent>
+          )
+        }
+      })}
+      <Button
+        variant='contained'
+        onClick={() => createNewText()}
+        style={{ margin: 10 }}
+      >
+        Add Text
+      </Button>
+      <Button
+        variant='contained'
+        onClick={() => createNewCode()}
+        style={{ margin: 10 }}
+      >
+        Add Code
+      </Button>
     </div>
   )
 }

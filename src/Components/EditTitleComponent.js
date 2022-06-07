@@ -1,7 +1,7 @@
 import React from "react"
 import { TextField } from "@mui/material"
 
-export const EditTitleComponent = ({ title, setTitle }) => {
+export const EditTitleComponent = ({ title, setTitle, handleTitleChange }) => {
   const handleChange = (e) => {
     setTitle(e.target.value)
   }
@@ -17,7 +17,7 @@ export const EditTitleComponent = ({ title, setTitle }) => {
       fullWidth
       variant='standard'
       value={title}
-      onChange={handleChange}
+      onChange={(e) => handleTitleChange(e.target.value)}
       placeholder='Untitled'
     ></TextField>
   )

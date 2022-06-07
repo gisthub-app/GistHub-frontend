@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { CodeBlock, atomOneDark as theme } from "react-code-blocks"
+import { CodeBlock, atomOneLight as theme } from "react-code-blocks"
 import { IconButton } from "@mui/material"
 import CopyAllIcon from "@mui/icons-material/CopyAll"
 import Tooltip from "@mui/material/Tooltip"

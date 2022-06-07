@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom"
 import Cookies from "js-cookie"
 import whiteLogo from "../img/white-logo.png"
 import { UserContext } from "../Context/UserContext"
+import { makeStyles } from "@mui/material"
 
 const Navbar = ({ isLoggedIn, drawerWidth }) => {
   const [userState, setUserState] = useContext(UserContext)
@@ -21,6 +22,22 @@ const Navbar = ({ isLoggedIn, drawerWidth }) => {
     Cookies.remove("auth_gisthub")
     navigate("/")
   }
+
+  const handleAddGist = async () => {
+    try {
+      const { data } = await axios.post(
+        process.env.REACT_APP_SERVER_URL + "/createGist",
+        {
+          user: userState.user,
+        }
+      )
+
+      navigate(`/editGist/${data._id}`)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
@@ -45,18 +62,29 @@ const Navbar = ({ isLoggedIn, drawerWidth }) => {
             </Button>
           </div>
           {userState.user ? (
-            <>
-              <Button href='/login' sx={{ color: "white" }} variant='text'>
-                <AddCircleIcon />
+            <div>
+              <Button style={{ backgroundColor: "white" }} variant='text'>
+                Gists Dashboard
+              </Button>
+
+              <Button
+                onClick={handleAddGist}
+                // className={classes.root}
+                style={{ backgroundColor: "white" }}
+                sx={{ marginLeft: 2 }}
+                variant='outlined'
+              >
+                Add a new Gist
+                <AddCircleIcon style={{ marginLeft: 5 }} />
               </Button>
               <Button
                 onClick={handleLogout}
-                sx={{ color: "white" }}
+                sx={{ color: "white", marginLeft: 4 }}
                 variant='text'
               >
                 Logout
               </Button>
-            </>
+            </div>
           ) : (
             <>
               <Button href='/login' sx={{ color: "white" }} variant='text'>
