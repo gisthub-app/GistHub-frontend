@@ -21,8 +21,9 @@ const Navbar = ({ isLoggedIn, drawerWidth }) => {
   const handleLogout = () => {
     setUserState({})
     Cookies.remove("auth_gisthub")
-    navigate("/")
     toast.success("Logout successful")
+
+    navigate("/")
   }
 
   const handleAddGist = async () => {
@@ -33,7 +34,7 @@ const Navbar = ({ isLoggedIn, drawerWidth }) => {
           user: userState.user,
         }
       )
-      toast.success("Fill in the gist and save it")
+      toast.info("Tip: SAVE the gist after making changes")
       navigate(`/editGist/${data._id}`)
     } catch (err) {
       console.log(err)

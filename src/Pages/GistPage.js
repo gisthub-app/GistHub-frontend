@@ -11,6 +11,7 @@ import ViewCodeComponent from "../Components/ViewCodeComponent"
 import ViewTextComponent from "../Components/ViewTextComponent"
 import ViewTitleComponent from "../Components/ViewTitleComponent"
 import { ErrorPage } from "./ErrorPage"
+import { toast } from "react-toastify"
 
 const GistPage = () => {
   const [open, setOpen] = useState(false)
@@ -92,6 +93,9 @@ const GistPage = () => {
               variant='contained'
               startIcon={<EditIcon />}
               style={{ marginLeft: 10 }}
+              onClick={() =>
+                toast.info("Tip: SAVE the gist after making changes")
+              }
             >
               Edit
             </Button>
