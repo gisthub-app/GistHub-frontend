@@ -14,7 +14,7 @@ const UserProvider = (props) => {
 
   useEffect(() => {
     if (state.user) {
-      console.log("NEW STATE", state)
+      // console.log("NEW STATE", state)
       const inOneWeek = new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000)
       Cookies.set("auth_gisthub", JSON.stringify(state.user), {
         expires: inOneWeek,

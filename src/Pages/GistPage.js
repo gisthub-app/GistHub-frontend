@@ -57,7 +57,7 @@ const GistPage = () => {
         )
         setOwnerUsername(data.user.username)
       }
-      console.log(gist)
+      // console.log(gist)
 
       setIsPrivate(gist.isPrivate)
       setPermissions(gist.permissions || [])
@@ -127,7 +127,7 @@ const GistPage = () => {
       </div>
       {items.map((item, index) => {
         const { type, payload } = item
-        console.log(payload)
+        // console.log(payload)
         if (type === "Code") {
           return <ViewCodeComponent payload={payload} />
         } else {
