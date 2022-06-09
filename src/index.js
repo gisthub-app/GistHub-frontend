@@ -7,8 +7,21 @@ import { createTheme, ThemeProvider } from "@mui/material/styles"
 import { BrowserRouter } from "react-router-dom"
 import { UserProvider } from "./Context/UserContext"
 
-const theme = createTheme()
-
+const theme = createTheme({
+  palette: {
+    type: "light",
+    primary: {
+      main: "#511E78",
+    },
+    secondary: {
+      main: "rgb(220, 0, 78)",
+    },
+    background: {
+      default: "#fff",
+      paper: "#fff",
+    },
+  },
+})
 ReactDOM.render(
   <React.StrictMode>
     <UserProvider>

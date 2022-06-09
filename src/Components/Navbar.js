@@ -9,7 +9,7 @@ import AddCircleIcon from "@mui/icons-material/AddCircle"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
 import Cookies from "js-cookie"
-import whiteLogo from "../img/white-logo.png"
+import blueLogo from "../img/blue-logo.png"
 import { UserContext } from "../Context/UserContext"
 import { makeStyles } from "@mui/material"
 import { toast } from "react-toastify"
@@ -51,7 +51,7 @@ const Navbar = ({ isLoggedIn, drawerWidth }) => {
           <div style={{ flex: "1" }}>
             <Button href='/' sx={{ color: "white" }} variant='text'>
               <img
-                src={whiteLogo}
+                src={blueLogo}
                 alt='logo'
                 style={{ height: "40px", marginRight: "10px" }}
               />

@@ -32,88 +32,90 @@ function Copyright(props) {
 export default function HomePage() {
   const [userState, setUserState] = useContext(UserContext)
   return (
-    <Grid container component='main' sx={{ height: "100vh" }}>
-      <CssBaseline />
-      <Grid
-        item
-        xs={false}
-        sm={4}
-        md={7}
-        sx={{
-          backgroundImage: `url(${code})`,
-          backgroundRepeat: "no-repeat",
-          backgroundColor: (t) =>
-            t.palette.mode === "light"
-              ? t.palette.grey[50]
-              : t.palette.grey[900],
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      />
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-        <Box
+    <div style={{ backgroundColor: "white" }}>
+      <Grid container component='main' sx={{ height: "100vh" }}>
+        <CssBaseline />
+        <Grid
+          item
+          xs={false}
+          sm={4}
+          md={7}
           sx={{
-            my: 8,
-            mx: 4,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
+            backgroundImage: `url(${code})`,
+            backgroundRepeat: "no-repeat",
+            backgroundColor: (t) =>
+              t.palette.mode === "light"
+                ? t.palette.grey[50]
+                : t.palette.grey[900],
+            backgroundSize: "cover",
+            backgroundPosition: "center",
           }}
-        >
-          <img
-            style={{
-              height: "200px",
-              marginTop: "10px",
-              marginBottom: "15px",
+        />
+        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+          <Box
+            sx={{
+              my: 8,
+              mx: 4,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
             }}
-            alt='logo'
-            src={blueLogo}
-          />
-          <Typography component='h1' variant='h5'>
-            Welcome to Gisthub!
-          </Typography>
+          >
+            <img
+              style={{
+                height: "200px",
+                marginTop: "10px",
+                marginBottom: "15px",
+              }}
+              alt='logo'
+              src={blueLogo}
+            />
+            <Typography component='h1' variant='h4'>
+              Welcome to GistHub!
+            </Typography>
 
-          <Box>
-            {userState.user ? (
-              <>
-                <Typography variant='h6'>
-                  {userState.user.firstName + " " + userState.user.lastName}
-                </Typography>
-                <Button
-                  href='/dashboard'
-                  fullWidth
-                  variant='contained'
-                  sx={{ mt: 3, mb: 2 }}
-                >
-                  See my gists
-                </Button>
-              </>
-            ) : (
-              <>
-                <Button
-                  href='/login'
-                  fullWidth
-                  variant='contained'
-                  sx={{ mt: 3, mb: 2 }}
-                >
-                  Login
-                </Button>
+            <Box>
+              {userState.user ? (
+                <>
+                  <Typography variant='h5'>
+                    {userState.user.firstName + " " + userState.user.lastName}
+                  </Typography>
+                  <Button
+                    href='/dashboard'
+                    fullWidth
+                    variant='contained'
+                    sx={{ mt: 3, mb: 2 }}
+                  >
+                    See my gists
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button
+                    href='/login'
+                    fullWidth
+                    variant='contained'
+                    sx={{ mt: 3, mb: 2 }}
+                  >
+                    Login
+                  </Button>
 
-                <Button
-                  href='/signup'
-                  fullWidth
-                  variant='outlined'
-                  sx={{ mt: 3, mb: 2 }}
-                >
-                  Sign Up
-                </Button>
-              </>
-            )}
+                  <Button
+                    href='/signup'
+                    fullWidth
+                    variant='outlined'
+                    sx={{ mt: 3, mb: 2 }}
+                  >
+                    Sign Up
+                  </Button>
+                </>
+              )}
 
-            <Copyright sx={{ mt: 5 }} />
+              <Copyright sx={{ mt: 5 }} />
+            </Box>
           </Box>
-        </Box>
+        </Grid>
       </Grid>
-    </Grid>
+    </div>
   )
 }

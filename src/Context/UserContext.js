@@ -3,7 +3,7 @@ import Cookies from "js-cookie"
 
 const UserContext = createContext([{}, () => {}])
 
-console.log("INITIAL COOKIE", Cookies.get("auth_gisthub"))
+// console.log("INITIAL COOKIE", Cookies.get("auth_gisthub"))
 
 const initialUser = Cookies.get("auth_gisthub")
 

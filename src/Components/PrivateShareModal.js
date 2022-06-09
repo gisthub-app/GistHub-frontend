@@ -149,7 +149,7 @@ const PrivateShareModal = ({
         options={options}
         ListboxProps={{
           onClick: (evt) => {
-            console.log(evt.target.textContent)
+            // console.log(evt.target.textContent)
             handleAddInvite(evt.target.textContent)
           },
         }}
