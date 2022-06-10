@@ -1,70 +1,53 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 💡Inspiration 
 
-## Available Scripts
+GitHub gists are broken. 
 
-In the project directory, you can run:
+When a user creates a gist on GitHub, they are prompted to choose to make their gist a **secret.** While most people think that a **secret gist** is identical to a private repo, the reality is that it’s not. Anyone on the internet can access your “secret gist” if they have the URL. Put simply, secret gists are *unlisted* on your profile and can only be accessible by you and others who have the URL to the gist. Users have been raising complaints about [the "secret" gist functionalities on GitHub forums.](https://github.community/t/make-public-gists-private/196652)
 
-### `npm start`
+Now think about this scenario, you’re a Software Engineer in a biigggg tech company and you share an important gist containing some important script with a colleague. Now we all know the retention rate in the tech industry. A couple of months later, your colleague leaves the company but still has access to all the proprietary gists. He/she may knowingly or unknowingly use code from that snippet in their future workplace.
+This is not good. We are here to do good. Which is why we created GistHub.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+GistHub solves for the lack of "private" gists on GitHub and adds additional features in order to make creating and sharing gists a lucrative experience. 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+[![Cover.png](https://i.postimg.cc/tC3Zzd71/Cover.png)](https://postimg.cc/F7KHrLym)
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🤔What it does 
 
-### `npm run build`
+GistHub allows users to create **Public** or **Private** gists. None of that secret stuff here sir.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Beyond solving the core problem where a user can access a gist only after a permission is granted, we have added additional features to like
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Permissions management 
+- Jupyter Notebook-like interface for creating gists (unlimited title, code and text blocks)
+- Syntax highlighting support for common languages in code blocks
+- A copy button to easily copy the gist
+- Ability to edit gists after creating them
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+[![jupyter.png](https://i.postimg.cc/qqQCrnSB/jupyter.png)](https://postimg.cc/zHbfSLq4)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🦾 How we built it
+* __Frontend:__ React.js, Tailwind
+* __Backend:__ Node, Express, Circle CI, AssemblyAI, Firebase
+* __Deployment:__ Github Pages
+* __Tools:__ Git
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+[![How-we-built-it.png](https://i.postimg.cc/jS7bNTct/How-we-built-it.png)](https://postimg.cc/9DCK5vsn)
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 📚Research 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Our project is guided by the problems observed in forums and communities. Here are a few of the resources that were helpful to us —
 
-### Code Splitting
+- https://github.blog/2014-05-09-change-the-visibility-of-your-gists/
+- https://news.ycombinator.com/item?id=3673306
+- https://gist.github.com/zmwangx/bc79e7d95d82c2f5e0976975b6e1c6d6s
+- https://docs.github.com/en/get-started/writing-on-github/editing-and-sharing-content-with-gists/creating-gists
+This is an extension of the project started [here.](https://github.com/Gisthub-Code-Sharing)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[![thanks-for-visiting.png](https://i.postimg.cc/Tw0P5x9C/thanks-for-visiting.png)](https://postimg.cc/MMcwghgQ)
