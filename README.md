@@ -30,9 +30,9 @@ Beyond solving the core problem where a user can access a gist only after a perm
 
 
 ## 🦾 How we built it
-* __Frontend:__ React.js, Tailwind
-* __Backend:__ Node, Express, Circle CI, AssemblyAI, Firebase
-* __Deployment:__ Github Pages
+* __Frontend:__ React.js, Material UI
+* __Backend:__ Node, Koa
+* __Deployment:__ Github Vercel, Heroku
 * __Tools:__ Git
 
 
