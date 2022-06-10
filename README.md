@@ -26,7 +26,7 @@ Beyond solving the core problem where a user can access a gist only after a perm
 - Ability to edit gists after creating them
 
 
-[![jupyter.png](https://i.postimg.cc/qqQCrnSB/jupyter.png)](https://postimg.cc/zHbfSLq4)
+[![jupyter.png](https://i.postimg.cc/0NY8wvfh/jupyter.png)](https://postimg.cc/zLfms94k)
 
 
 ## 🦾 How we built it
