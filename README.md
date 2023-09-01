@@ -26,13 +26,13 @@ Beyond solving the core problem where a user can access a gist only after a perm
 - Ability to edit gists after creating them
 
 
-[![jupyter.png](https://i.postimg.cc/0NY8wvfh/jupyter.png)](https://postimg.cc/zLfms94k)
+[![jupyter.png](https://i.postimg.cc/qqQCrnSB/jupyter.png)](https://postimg.cc/zHbfSLq4)
 
 
 ## 🦾 How we built it
-* __Frontend:__ React.js, Material UI
-* __Backend:__ Node, Koa
-* __Deployment:__ Github Vercel, Heroku
+* __Frontend:__ React.js, Tailwind
+* __Backend:__ Node, Express, Circle CI, AssemblyAI, Firebase
+* __Deployment:__ Github Pages
 * __Tools:__ Git
 
 
